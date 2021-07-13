@@ -1,0 +1,14 @@
+<div
+  class="item-msg"
+  [ngClass]="{ client: itemMsg.type === 'client' }"
+  *ngFor="let itemMsg of messagesRoll"
+>
+  <b>{{ itemMsg.author }} says:</b>
+  <div *ngIf="itemMsg.origin === 'message'">
+    <p>{{ itemMsg.message }}</p>
+  </div>
+  <app-switch-widgets
+    *ngIf="itemMsg.origin === 'command'"
+    [widget]="itemMsg.widget || null"
+  ></app-switch-widgets>
+</div>

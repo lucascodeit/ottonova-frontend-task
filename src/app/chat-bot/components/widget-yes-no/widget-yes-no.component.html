@@ -1,0 +1,13 @@
+<p *ngIf="!isDone">Would you like to close this conversations?</p>
+<p *ngIf="isDone">Ok, enjoy with our ottonova bot!</p>
+<div *ngIf="!isDone" class="buttons">
+  <button
+    *ngFor="let btn of data"
+    type="button"
+    (click)="btnAction(btn)"
+    mat-raised-button
+    [color]="btn === 'Yes' ? 'primary' : 'accent'"
+  >
+    {{ btn }}
+  </button>
+</div>

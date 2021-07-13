@@ -1,0 +1,19 @@
+<div class="wrapper-widget" [ngSwitch]="getWidgetType()">
+  <app-widget-map
+    *ngSwitchCase="'map'"
+    [data]="getWidgetData()"
+  ></app-widget-map>
+  <app-widget-yes-no
+    [data]="getWidgetData()"
+    *ngSwitchCase="'complete'"
+  ></app-widget-yes-no>
+  <app-widget-rate
+    [data]="getWidgetData()"
+    *ngSwitchCase="'rate'"
+  ></app-widget-rate>
+  <app-widget-date
+    [data]="getWidgetData()"
+    *ngSwitchCase="'date'"
+  ></app-widget-date>
+  <p *ngSwitchDefault>Widget Unknow {{ getWidgetType() }}</p>
+</div>

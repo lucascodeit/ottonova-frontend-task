@@ -1,0 +1,17 @@
+<div class="">
+  <p>Please, rate your experience with us. =D</p>
+  <div class="stars">
+    <mat-icon
+      *ngFor="let star of getArray()"
+      (click)="setRate(star)"
+      class="rate-start"
+      [ngClass]="{ '-isFull': star <= starRated }"
+      >start_rate</mat-icon
+    >
+  </div>
+  <div class="stars">
+    <button type="button" (click)="done()" mat-button color="white">
+      {{ isDone ? "Thanks!" : "Done" }}
+    </button>
+  </div>
+</div>

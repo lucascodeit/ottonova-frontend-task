@@ -1,0 +1,12 @@
+<div *ngIf="!isDone">
+  <button
+    class="btn"
+    (click)="clickDay(day)"
+    mat-raised-button
+    color="white"
+    *ngFor="let day of getDayBtn()"
+  >
+    {{ day }}
+  </button>
+</div>
+<p *ngIf="isDone">{{ isDoneMessage }}</p>

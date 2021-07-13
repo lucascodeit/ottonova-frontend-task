@@ -1,0 +1,11 @@
+.rate-start {
+  margin: 10px;
+  font-size: 30px;
+  &.-isFull {
+    color: #ffc107;
+  }
+}
+.stars {
+  display: flex;
+  justify-content: center;
+}

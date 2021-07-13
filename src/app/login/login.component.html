@@ -1,0 +1,36 @@
+<div class="login-page">
+  <form [formGroup]="formLogin" (ngSubmit)="onSubmit()" class="box-form">
+    <div class="container-image">
+      <img
+        src="./../../assets/images/logo-ottonova.png"
+        alt="Image Logo Ottonova"
+      />
+    </div>
+    <p class="title">Chat boot Ottonova</p>
+    <mat-form-field appearance="fill">
+      <mat-label>Your username</mat-label>
+      <input matInput type="text" formControlName="username" />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Your password</mat-label>
+      <input matInput type="password" formControlName="password" />
+    </mat-form-field>
+    <div class="loading" *ngIf="isLoading">
+      <mat-progress-spinner
+        class="spinner"
+        color="primary"
+        mode="indeterminate"
+        [value]="50"
+      >
+      </mat-progress-spinner>
+    </div>
+    <button
+      type="submit"
+      mat-raised-button
+      color="primary"
+      [disabled]="isLoading"
+    >
+      Sig in
+    </button>
+  </form>
+</div>

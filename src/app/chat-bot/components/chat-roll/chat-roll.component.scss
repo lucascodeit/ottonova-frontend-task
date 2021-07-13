@@ -1,0 +1,23 @@
+.item-msg {
+  background-color: #fff;
+  position: relative;
+  margin: 5px;
+  padding: 10px;
+  border: 1px solid rgb(172, 172, 172);
+  border-radius: 6px 20px 20px 20px;
+  min-width: 150px;
+  font-weight: bold;
+  background-color: #0077ff;
+  color: #fff;
+  // max-width: 200px;
+  width: fit-content;
+  box-shadow: 4px 5px 5px 0px rgba(0, 0, 0, 0.11);
+  -webkit-box-shadow: 4px 5px 5px 0px rgba(0, 0, 0, 0.11);
+  -moz-box-shadow: 4px 5px 5px 0px rgba(0, 0, 0, 0.11);
+  &.client {
+    background-color: #dedede;
+    color: #000;
+    border-radius: 20px 20px 5px 20px;
+    margin-left: auto;
+  }
+}

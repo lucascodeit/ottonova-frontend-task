@@ -1,0 +1,25 @@
+<div class="chat-content">
+  <div class="list-messages">
+    <app-chat-roll [messagesRoll]="messages"></app-chat-roll>
+  </div>
+  <mat-form-field class="area-messages" appearance="fill">
+    <mat-label>Message for OttonovaBot</mat-label>
+    <input matInput type="text" [(ngModel)]="message" />
+    <button
+      (click)="sendMessage()"
+      matSuffix
+      mat-icon-button
+      aria-label="Send message"
+    >
+      <mat-icon>send</mat-icon>
+    </button>
+    <button
+      (click)="sendCommand()"
+      matSuffix
+      mat-icon-button
+      aria-label="Send command"
+    >
+      <mat-icon>widgets</mat-icon>
+    </button>
+  </mat-form-field>
+</div>
