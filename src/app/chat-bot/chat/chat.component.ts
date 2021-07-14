@@ -1,12 +1,9 @@
-import { Observable } from 'rxjs';
+import { ChatService } from './../../../services/chat-service';
+import { Observable, of } from 'rxjs';
 import { AuthService } from 'src/services/auth';
-import {
-  OttonovaCommand,
-  OttonovaService,
-} from './../../../services/ottonova-server';
+import { OttonovaCommand } from './../../../services/ottonova-server';
 import { ChatMessage } from './../components/chat-roll/chat-roll.component';
 import { Component, OnInit } from '@angular/core';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-chat',
@@ -19,62 +16,26 @@ export class ChatComponent implements OnInit {
   public widget$: Observable<Pick<OttonovaCommand, 'command'> | null> =
     new Observable();
 
-  public messages: ChatMessage[] = [
-    // { author: 'Lucas', message: 'Hi bot', type: 'client' },
-    // { author: 'ottonova-bot', message: 'Hi  Client', type: 'bot' },
-  ];
+  public messages$ = of<ChatMessage[]>([]);
 
   constructor(
-    private readonly ottonovaService: OttonovaService,
+    private readonly chatService: ChatService,
     private readonly authService: AuthService
   ) {}
 
   public sendMessage() {
-    console.log('sendMessage', this.message);
+    if (!this.message) return;
     const userName = this.user ? this.user.username : 'Unknow User';
-    this.messages.push({
-      author: userName,
-      message: this.message,
-      type: 'client',
-      origin: 'message',
-    });
-    this.ottonovaService.sendMessage({
-      author: userName,
-      message: this.message,
-    });
+    this.chatService.sendMessage(this.message, userName);
     this.message = '';
   }
 
   public sendCommand() {
-    this.ottonovaService.sendCommand();
-  }
-
-  private startListenMessage() {
-    this.ottonovaService.getMessage().subscribe((message: any) => {
-      this.messages.push({
-        author: message.author,
-        message: message.message,
-        type: 'bot',
-        origin: 'message',
-      });
-    });
-  }
-
-  private startListenCommand() {
-    this.ottonovaService.getCommand().subscribe((value) => {
-      this.messages.push({
-        author: value.author,
-        message: '',
-        type: 'bot',
-        origin: 'command',
-        widget: { command: value.command },
-      });
-    });
+    this.chatService.sendCommand();
   }
 
   ngOnInit(): void {
-    this.startListenMessage();
-    this.startListenCommand();
     this.authService.auth$.subscribe((user) => (this.user = user));
+    this.messages$ = this.chatService.chatMessagesSubject;
   }
 }

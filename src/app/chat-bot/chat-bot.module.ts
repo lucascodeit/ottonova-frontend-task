@@ -1,3 +1,4 @@
+import { ChatService } from './../../services/chat-service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
@@ -45,6 +46,6 @@ const config: SocketIoConfig = {
     FormsModule,
     SocketIoModule.forRoot(config),
   ],
-  providers: [OttonovaService],
+  providers: [OttonovaService, ChatService],
 })
 export class ChatBotModule {}

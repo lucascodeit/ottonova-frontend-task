@@ -1,14 +1,15 @@
 <div class="chat-content">
   <div class="list-messages">
-    <app-chat-roll [messagesRoll]="messages"></app-chat-roll>
+    <app-chat-roll [messagesRoll]="messages$ | async"></app-chat-roll>
   </div>
-  <mat-form-field class="area-messages" appearance="fill">
-    <mat-label>Message for OttonovaBot</mat-label>
+  <mat-form-field class="area-messages" appearance="outline">
+    <mat-label>Message for Ottonova Bot</mat-label>
     <input matInput type="text" [(ngModel)]="message" />
     <button
       (click)="sendMessage()"
       matSuffix
       mat-icon-button
+      [disabled]="!this.message"
       aria-label="Send message"
     >
       <mat-icon>send</mat-icon>
