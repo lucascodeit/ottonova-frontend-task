@@ -11,7 +11,7 @@ export class SwitchWidgetsComponent implements OnInit {
 
   constructor() {}
 
-  public getWidgetData() {
+  get widgetData() {
     if (!this.widget) {
       return null;
     }
@@ -21,7 +21,7 @@ export class SwitchWidgetsComponent implements OnInit {
     return data;
   }
 
-  public getWidgetType() {
+  get widgetType() {
     if (!this.widget) {
       return '';
     }
