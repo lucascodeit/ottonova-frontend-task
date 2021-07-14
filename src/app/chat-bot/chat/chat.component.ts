@@ -1,5 +1,5 @@
 import { ChatService } from './../../../services/chat-service';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subscription } from 'rxjs';
 import { AuthService } from 'src/services/auth';
 import { OttonovaCommand } from './../../../services/ottonova-server';
 import { ChatMessage } from './../components/chat-roll/chat-roll.component';
@@ -17,11 +17,16 @@ export class ChatComponent implements OnInit {
     new Observable();
 
   public messages$ = of<ChatMessage[]>([]);
+  private authUnsubscribe: Subscription;
 
   constructor(
     private readonly chatService: ChatService,
     private readonly authService: AuthService
-  ) {}
+  ) {
+    this.authUnsubscribe = this.authService.auth$.subscribe(
+      (user) => (this.user = user)
+    );
+  }
 
   public sendMessage() {
     if (!this.message) return;
@@ -35,7 +40,10 @@ export class ChatComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.authService.auth$.subscribe((user) => (this.user = user));
     this.messages$ = this.chatService.chatMessagesSubject;
+  }
+
+  ngOnDestroy() {
+    this.authUnsubscribe.unsubscribe();
   }
 }
