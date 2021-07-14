@@ -19,9 +19,10 @@ import { SwitchWidgetsComponent } from './components/switch-widgets/switch-widge
 import { WidgetYesNoComponent } from './components/widget-yes-no/widget-yes-no.component';
 import { WidgetRateComponent } from './components/widget-rate/widget-rate.component';
 import { WidgetDateComponent } from './components/widget-date/widget-date.component';
+import { environment } from 'src/environments/environment';
 
 const config: SocketIoConfig = {
-  url: 'https://demo-chat-server.on.ag/',
+  url: environment.ottonovaBotSocketUrl,
   options: {},
 };
 

@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  ottonovaBotSocketUrl: 'https://demo-chat-server.on.ag/',
 };
