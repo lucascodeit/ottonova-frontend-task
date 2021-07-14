@@ -3,14 +3,14 @@ import { Observable, of, Subscription } from 'rxjs';
 import { AuthService } from 'src/services/auth';
 import { OttonovaCommand } from './../../../services/ottonova-server';
 import { ChatMessage } from './../components/chat-roll/chat-roll.component';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss'],
 })
-export class ChatComponent implements OnInit {
+export class ChatComponent implements OnInit, OnDestroy {
   public message: string = '';
   public user: any = null;
   public widget$: Observable<Pick<OttonovaCommand, 'command'> | null> =
