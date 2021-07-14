@@ -1,6 +1,9 @@
+import { OttonovaService } from './../../../services/ottonova-server';
+import { ChatService } from './../../../services/chat-service';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ChatComponent } from './chat.component';
+import { OttonovaServiceMock } from 'src/test/mocks/OttonovaServiceMock';
 
 describe('ChatComponent', () => {
   let component: ChatComponent;
@@ -8,9 +11,13 @@ describe('ChatComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ChatComponent ]
-    })
-    .compileComponents();
+      declarations: [ChatComponent],
+      providers: [
+        ChatComponent,
+        { provide: ChatService },
+        { provide: OttonovaService, useClass: OttonovaServiceMock },
+      ],
+    }).compileComponents();
   });
 
   beforeEach(() => {
