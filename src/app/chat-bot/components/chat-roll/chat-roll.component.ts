@@ -15,7 +15,7 @@ export type ChatMessage = {
   styleUrls: ['./chat-roll.component.scss'],
 })
 export class ChatRollComponent implements OnInit {
-  @Input() messagesRoll: ChatMessage[] = [];
+  @Input() messagesRoll: ChatMessage[] | null = [];
 
   constructor() {}
 
