@@ -8,9 +8,8 @@ describe('WidgetDateComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ WidgetDateComponent ]
-    })
-    .compileComponents();
+      declarations: [WidgetDateComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -21,5 +20,17 @@ describe('WidgetDateComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should render week days given a date starting with day of date', () => {
+    component.data = '2021-07-15T00:26:07.396Z';
+    const daysBtn = component.getDayBtn();
+    expect(daysBtn).toEqual([
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Monday',
+      'Tuesday',
+    ]);
   });
 });
