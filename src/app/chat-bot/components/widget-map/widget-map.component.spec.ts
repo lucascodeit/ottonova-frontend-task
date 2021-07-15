@@ -8,9 +8,8 @@ describe('WidgetMapComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ WidgetMapComponent ]
-    })
-    .compileComponents();
+      declarations: [WidgetMapComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -21,5 +20,13 @@ describe('WidgetMapComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should set marker right position in map', () => {
+    component.data = { lat: 106500, lng: 529500 };
+    component.ngAfterViewInit();
+    fixture.detectChanges();
+    expect(component.marker?.getPosition()?.lat()).toBe(component.data.lat);
+    expect(component.marker?.getPosition()?.lng()).toBe(component.data.lng);
   });
 });
